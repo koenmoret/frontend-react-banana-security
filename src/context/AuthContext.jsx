@@ -1,22 +1,20 @@
 import React, {createContext, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-export const AuthContext = createContext({
-    Naam : "koen"
-});
+export const AuthContext = createContext({});
 
 
-//const AuthContextProvider = ({childeren}) => {
-    function AuthContextProvider({ children }) {
+const AuthContextProvider = ({children}) => {
+
     const [isAuth, toggleIsAuth] = useState(false);
     const navigate = useNavigate();
     function login() {
-        isAuth(true);
+        toggleIsAuth(true);
         navigate('/profile');
     }
 
     function logout() {
-        isAuth(false);
+        toggleIsAuth(false);
         navigate('/');
     }
 
