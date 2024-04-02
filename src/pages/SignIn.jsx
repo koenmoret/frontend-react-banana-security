@@ -4,11 +4,12 @@ import {AuthContext} from "../context/AuthContext";
 
 function SignIn() {
 
-    const {login} = useContext(AuthContext);
+    const {login, email, setEmail, password, setPassword} = useContext(AuthContext);
+
 
     function handleSubmit(e) {
         e.preventDefault();
-        login();
+        login(email, password);
     }
 
     return (
@@ -18,7 +19,26 @@ function SignIn() {
                 molestias qui quo unde?</p>
 
             <form onSubmit={handleSubmit}>
-                <p>*invoervelden*</p>
+                <div>
+                    <label htmlFor="email">E-mailadres:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Wachtwoord:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
                 <button type="submit">Inloggen</button>
             </form>
 

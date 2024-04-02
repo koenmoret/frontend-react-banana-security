@@ -7,8 +7,18 @@ export const AuthContext = createContext({});
 const AuthContextProvider = ({children}) => {
 
     const [isAuth, toggleIsAuth] = useState(false);
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const navigate = useNavigate();
-    function login() {
+
+    function signup(username, email, password) {
+        toggleIsAuth(true);
+        navigate('/profile');
+    }
+
+    function login(email, password) {
         toggleIsAuth(true);
         navigate('/profile');
     }
@@ -19,9 +29,16 @@ const AuthContextProvider = ({children}) => {
     }
 
     const data = {
-        isAuth: isAuth,
-        login: login,
-        logout: logout,
+        isAuth,
+        signup,
+        login,
+        logout,
+        username,
+        setUsername,
+        email,
+        setEmail,
+        password,
+        setPassword,
     };
 
     return (
